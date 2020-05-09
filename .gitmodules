@@ -1,0 +1,4 @@
+[submodule "public"]
+	path = public
+	url = https://github.com/linton-dawson/linton-dawson.github.io
+	branch = master
