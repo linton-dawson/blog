@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="Introduction to constexpr C&#43;&#43;11 introduced the concept of constexpr, which to put it broadly, evaluates functions and objects at compile time.
+Simply put, a constexpr object declaration indirectly means it is declared as const, whereas a constexpr function declaration means it is implicitly declared inline( functions which replace the function call with the function code, thus saving overhead.).
+constexpr saves a ton of runtime and since they act in compile time are implicitly thread safe." />
+<meta name="keywords" content=", untagged" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="http://linton-dawson.github.io/posts/constuse/" />
+
+
+    <title>
+        
+            The very basics of constexpr :: Pushkar Kukde  — pushkar&#39;s blog
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.de188b3201233c251f4fd6306dbd2cb41e408fb8846c09781b2925de7df5025c.css">
+
+
+
+
+
+
+<meta itemprop="name" content="The very basics of constexpr">
+<meta itemprop="description" content="Introduction to constexpr C&#43;&#43;11 introduced the concept of constexpr, which to put it broadly, evaluates functions and objects at compile time.
+Simply put, a constexpr object declaration indirectly means it is declared as const, whereas a constexpr function declaration means it is implicitly declared inline( functions which replace the function call with the function code, thus saving overhead.).
+constexpr saves a ton of runtime and since they act in compile time are implicitly thread safe.">
+<meta itemprop="datePublished" content="2020-04-23T21:01:20&#43;05:30" />
+<meta itemprop="dateModified" content="2020-04-23T21:01:20&#43;05:30" />
+<meta itemprop="wordCount" content="291">
+<meta itemprop="image" content="http://linton-dawson.github.io/"/>
+
+
+
+<meta itemprop="keywords" content="untagged," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://linton-dawson.github.io/"/>
+
+<meta name="twitter:title" content="The very basics of constexpr"/>
+<meta name="twitter:description" content="Introduction to constexpr C&#43;&#43;11 introduced the concept of constexpr, which to put it broadly, evaluates functions and objects at compile time.
+Simply put, a constexpr object declaration indirectly means it is declared as const, whereas a constexpr function declaration means it is implicitly declared inline( functions which replace the function call with the function code, thus saving overhead.).
+constexpr saves a ton of runtime and since they act in compile time are implicitly thread safe."/>
+
+
+
+
+    <meta property="og:title" content="The very basics of constexpr" />
+<meta property="og:description" content="Introduction to constexpr C&#43;&#43;11 introduced the concept of constexpr, which to put it broadly, evaluates functions and objects at compile time.
+Simply put, a constexpr object declaration indirectly means it is declared as const, whereas a constexpr function declaration means it is implicitly declared inline( functions which replace the function call with the function code, thus saving overhead.).
+constexpr saves a ton of runtime and since they act in compile time are implicitly thread safe." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://linton-dawson.github.io/posts/constuse/" />
+<meta property="og:image" content="http://linton-dawson.github.io/"/>
+<meta property="article:published_time" content="2020-04-23T21:01:20+05:30" />
+<meta property="article:modified_time" content="2020-04-23T21:01:20+05:30" /><meta property="og:site_name" content="Pushkar Kukde" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-04-23 21:01:20 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd ~/linton_dawson/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/posts">blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        2 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="http://linton-dawson.github.io/posts/constuse/">The very basics of constexpr</a>
+      </h1>
+
+      
+
+      
+
+      <div class="post-content">
+        <h2 id="introduction-to-constexpr">Introduction to constexpr</h2>
+<p>C++11 introduced the concept of constexpr, which to put it broadly, evaluates functions and objects at compile time.</p>
+<p>Simply put, a constexpr object declaration indirectly means it is declared as const, whereas a constexpr function declaration means it is implicitly declared inline( functions which replace the function call with the function code, thus saving overhead.).</p>
+<p>constexpr saves a ton of runtime and since they act in compile time are implicitly thread safe.</p>
+<p>A confusion I had was the difference between constexpr and const. A const keyoword specifies that a particular object or variable is unmodifiable, which is a subset of constexpr behaviour.</p>
+<p>Over the years, the newer versions of C++ standard have added a steady flux of constexpr compatibility and features.</p>
+<p>For example, in C++11 constexpr functions were only allowed one return statement, whereas from C++14, multiple return statements were allowed.</p>
+<h2 id="why-constexpr-">Why constexpr ?</h2>
+<ul>
+<li>Saves a lot of runtime.</li>
+<li>Are implicitly thread-safe.</li>
+<li>Can be constructed in read-only memory.</li>
+</ul>
+<h2 id="how-to-constexpr-">How to constexpr ?</h2>
+<p>The basic use is prety simple, just use the constexpr keyword before any function or variable declaration.</p>
+<p>It is important to note that all object declarations inside a constexpr function must be initialized.</p>
+<p>Also, a constexpr function can only call other constexpr functions and not runtime ones (which is obvious).</p>
+<p><code>constexpr int foo = 42</code> is the same as <code>int constexpr foo = 42</code></p>
+<h2 id="c20-newer-constexpr-features">C++20 newer constexpr features</h2>
+<ul>
+<li>constexpr virtual functions.</li>
+<li>constexpr union, try and catch, dynamic_cast, typeid and std::pointer_traits.</li>
+<li>constexpr additions.</li>
+<li>std::string and std:: vector have been constexpr-ed.</li>
+<li>constexpr <!-- raw HTML omitted --> library algorithms.</li>
+</ul>
+<h2 id="some-interesting-talks-and-resources-about-constexpr">Some interesting talks and resources about constexpr</h2>
+<p><a href="https://www.youtube.com/watch?v=PJwd4JLYJJY">Ben Deane and Jason Turner&rsquo;s CppCon 2017 talk : constexpr ALL things</a></p>
+<p><a href="https://www.youtube.com/watch?v=xtf9qkDTrZE">Jason Turner&rsquo;s Meeting C++ 2017 talk : Practical constexpr</a></p>
+<p><a href="https://en.cppreference.com/w/cpp/language/constexpr">constexpr cppreference page</a></p>
+<p><a href="https://www.modernescpp.com/index.php/c-core-guidelines-programming-at-compile-time-with-constexpr">Rainer Grimm&rsquo;s article</a></p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="http://linton-dawson.github.io/tags/untagged/">untagged</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        291 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2020-04-23 21:01 &#43;0530
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+            <span class="button previous">
+              <a href="http://linton-dawson.github.io/posts/flask_user/">
+                <span class="button__icon">←</span>
+                <span class="button__text">The very basics of Flask User</span>
+              </a>
+            </span>
+          
+
+          
+        </div>
+      </div>
+    
+
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span><span><a href="http://linton-dawson.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+          </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.af435e44374f1e99a669ea8cd5bb9a2fceed80588941a451bfddb66b86a67c9f40b0f417e9543a763f809aa7e9300d7b1d69bf99615810ba02ac70396d50fad5.js" integrity="sha512-r0NeRDdPHpmmaeqM1buaL87tgFiJQaRRv922a4amfJ9AsPQX6VQ6dj&#43;AmqfpMA17HWm/mWFYELoCrHA5bVD61Q=="></script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on Pushkar Kukde</title>
+        <link>http://linton-dawson.github.io/posts/</link>
+        <description>Recent content in Posts on Pushkar Kukde</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Sun, 31 Jan 2021 01:44:51 +0530</lastBuildDate>
+        <atom:link href="http://linton-dawson.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>The very basics of Flask User</title>
+            <link>http://linton-dawson.github.io/posts/flask_user/</link>
+            <pubDate>Sun, 31 Jan 2021 01:44:51 +0530</pubDate>
+            
+            <guid>http://linton-dawson.github.io/posts/flask_user/</guid>
+            <description>Introduction to Flask Before we delve into Flask-User, let&amp;rsquo;s get to know a bit about the Flask (micro)framework. Developing static as well as dynamic web apps in Python is not a newfangled concept. There have existed several frameworks right from Zope(1998), CherryPy(2002), Django(2005), web2py(2007), Tornado(2009) and lots more. Django and Flask have undoubtedly been the leading frameworks since the past couple of years. There is a constant barrage of questions and comparisons to determine which among them is the &amp;ldquo;superior&amp;rdquo; framework.</description>
+            <content type="html"><![CDATA[<h2 id="introduction-to-flask">Introduction to Flask</h2>
+<p>Before we delve into Flask-User, let&rsquo;s get to know a bit about the Flask (micro)framework.
+Developing static as well as dynamic web apps in Python is not a newfangled concept. There have existed several frameworks right from Zope(1998), CherryPy(2002), Django(2005), web2py(2007), Tornado(2009) and lots more. Django and Flask have undoubtedly been the leading frameworks since the past couple of years. There is a constant barrage of questions and comparisons to determine which among them is the &ldquo;superior&rdquo; framework. The major difference in my opinion, is how both of these frameworks present their applications to the developer. Django offers a more &ldquo;complete&rdquo; experience : a pre-package of admin side panels, an ORM (object relational mapping), and a proper directory structure. Flask on the other hand offers a more raw experience but focuses more on simplicity and control to give the developer the freedom to craft their own application. Despite the flexibility and independence, Flask still lacks the popularity that Django has achieved and continues to play as a second fiddle in the Python Web Dev universe.</p>
+<p>Flask has a couple of dependencies namely Jinja and Werkzeug. Jinja is a template engine that basically generates HTML files with powerful features like macros and template inheritance. It is modelled after Django&rsquo;s templates but are not completely compatible with them. To put it very roughly, one of the major differences is that Jinja allows the user to write logic inside extensions which Django prohibits. Werkzeug (German word for &ldquo;tool&rdquo;) is a WSGI (web server gateway interface) web application library. WSGI basically is a middleman between a web server (say an Apache or Nginx server) and the Python backend code. It provides a sort of common ground for Python frameworks to interact with the web.</p>
+<p>Major commercial enterprises like Netflix, Reddit and Lyft are amongst the many companies that actively use the Flask framework.</p>
+<p>So this part was about Flask - the framework, which this post isn&rsquo;t about. The question that arises next is&hellip;</p>
+<h2 id="so-what-is-flask-user-">So what is Flask-User ?</h2>
+<p>Flask-User is a Flask extension which provides simple yet flexible user management. Events like logging in, logging out, email validations, sessions are handled by this extension. Written by Ling Thio in 2018, it offers an easier approach to build web applications involving users as comapred to creating the same in vanilla Flask.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>The very basics of constexpr</title>
+            <link>http://linton-dawson.github.io/posts/constuse/</link>
+            <pubDate>Thu, 23 Apr 2020 21:01:20 +0530</pubDate>
+            
+            <guid>http://linton-dawson.github.io/posts/constuse/</guid>
+            <description>Introduction to constexpr C++11 introduced the concept of constexpr, which to put it broadly, evaluates functions and objects at compile time.
+Simply put, a constexpr object declaration indirectly means it is declared as const, whereas a constexpr function declaration means it is implicitly declared inline( functions which replace the function call with the function code, thus saving overhead.).
+constexpr saves a ton of runtime and since they act in compile time are implicitly thread safe.</description>
+            <content type="html"><![CDATA[<h2 id="introduction-to-constexpr">Introduction to constexpr</h2>
+<p>C++11 introduced the concept of constexpr, which to put it broadly, evaluates functions and objects at compile time.</p>
+<p>Simply put, a constexpr object declaration indirectly means it is declared as const, whereas a constexpr function declaration means it is implicitly declared inline( functions which replace the function call with the function code, thus saving overhead.).</p>
+<p>constexpr saves a ton of runtime and since they act in compile time are implicitly thread safe.</p>
+<p>A confusion I had was the difference between constexpr and const. A const keyoword specifies that a particular object or variable is unmodifiable, which is a subset of constexpr behaviour.</p>
+<p>Over the years, the newer versions of C++ standard have added a steady flux of constexpr compatibility and features.</p>
+<p>For example, in C++11 constexpr functions were only allowed one return statement, whereas from C++14, multiple return statements were allowed.</p>
+<h2 id="why-constexpr-">Why constexpr ?</h2>
+<ul>
+<li>Saves a lot of runtime.</li>
+<li>Are implicitly thread-safe.</li>
+<li>Can be constructed in read-only memory.</li>
+</ul>
+<h2 id="how-to-constexpr-">How to constexpr ?</h2>
+<p>The basic use is prety simple, just use the constexpr keyword before any function or variable declaration.</p>
+<p>It is important to note that all object declarations inside a constexpr function must be initialized.</p>
+<p>Also, a constexpr function can only call other constexpr functions and not runtime ones (which is obvious).</p>
+<p><code>constexpr int foo = 42</code> is the same as <code>int constexpr foo = 42</code></p>
+<h2 id="c20-newer-constexpr-features">C++20 newer constexpr features</h2>
+<ul>
+<li>constexpr virtual functions.</li>
+<li>constexpr union, try and catch, dynamic_cast, typeid and std::pointer_traits.</li>
+<li>constexpr additions.</li>
+<li>std::string and std:: vector have been constexpr-ed.</li>
+<li>constexpr <!-- raw HTML omitted --> library algorithms.</li>
+</ul>
+<h2 id="some-interesting-talks-and-resources-about-constexpr">Some interesting talks and resources about constexpr</h2>
+<p><a href="https://www.youtube.com/watch?v=PJwd4JLYJJY">Ben Deane and Jason Turner&rsquo;s CppCon 2017 talk : constexpr ALL things</a></p>
+<p><a href="https://www.youtube.com/watch?v=xtf9qkDTrZE">Jason Turner&rsquo;s Meeting C++ 2017 talk : Practical constexpr</a></p>
+<p><a href="https://en.cppreference.com/w/cpp/language/constexpr">constexpr cppreference page</a></p>
+<p><a href="https://www.modernescpp.com/index.php/c-core-guidelines-programming-at-compile-time-with-constexpr">Rainer Grimm&rsquo;s article</a></p>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>
